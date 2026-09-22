@@ -43,5 +43,5 @@ almide build src/main.almd -o build/fizz-memory-l2-events
 
 ## 契約
 
-[fizz-protocol](https://github.com/Aid-On/fizz-protocol) の `memory` モジュール
+[fizz-protocol](https://github.com/aiviecast/fizz-protocol) の `memory` モジュール
 (`MemoryEvent` とその Codec)に依存。
