@@ -4,4 +4,4 @@ version = "0.1.0"
 description = "Fizz memory L2 — append-only NDJSON event log on disk with per-user query (append/query/wipe over NDJSON)"
 
 [dependencies]
-fizz_protocol = { git = "https://github.com/aiviecast/fizz-protocol", tag = "v0.2.1" }
+fizz_protocol = { git = "https://github.com/aiviecast/fizz-protocol", tag = "v0.2.2" }
