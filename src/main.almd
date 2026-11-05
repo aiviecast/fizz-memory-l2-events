@@ -24,7 +24,7 @@ import list
 import string
 import fs
 
-local fn field(v: Value, k: String) -> Value = value.field(v, k) ?? value.null()
+local fn field(v: Value, k: String) -> Value = value.get(v, k) ?? value.null()
 local fn fstr(v: Value, k: String) -> String = result.unwrap_or(value.as_string(field(v, k)), "")
 local fn fint(v: Value, k: String) -> Int = result.unwrap_or(value.as_int(field(v, k)), 0)
 
@@ -47,7 +47,7 @@ effect fn handle_append(file: String, ev: memory.MemoryEvent) -> Result[Unit, St
     id: id, user_id: ev.user_id, session_id: ev.session_id,
     role: ev.role, content: ev.content, ts: ev.ts, tags: ev.tags,
   }
-  fs.append(file, l2.event_to_line(stored) + "\n")!
+  fs.append_text(file, l2.event_to_line(stored) + "\n")!
   println(json.stringify(value.object([
     ("ok", value.bool(true)), ("id", value.int(id)),
   ])))
@@ -75,7 +75,7 @@ effect fn main() -> Unit = {
   let file = if path == "" then "events.jsonl" else path
   var open = true
   while open {
-    let line = io.read_line()
+    let line = io.read_line() ?? ""
     if string.trim(line) == "" then {
       open = false
     } else {
